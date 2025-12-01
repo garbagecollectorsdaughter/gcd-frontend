@@ -1,0 +1,269 @@
+@import "tailwindcss";
+
+@custom-variant theme-rainbow (&:where([data-theme="rainbow"] *));
+@custom-variant theme-pixel-princess (&:where([data-theme="pixel-princess"] *));
+
+@theme inline {
+  --font-readable: var(--font-ibm_plex_sans);
+  --font-mono: var(--font-ibm_plex_mono);
+  --font-sans: var(--font-basiic);
+  --font-serif: var(--font-romance_a);
+  --font-pixel-sans: var(--font-basiic);
+  --font-cursive: var(--font-venice_classic);
+  --font-cute: var(--font-rainyhearts);
+  --font-pixel-serif: var(--font-romance_a);
+  --font-gothic: var(--font-gothicpixels);
+  --font-handwritten: var(--font-papernotes);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-surface: var(--surface);
+  --color-surface-variant: var(--surface-variant);
+  --color-border: var(--border);
+  --color-on-surface: var(--on-surface);
+  --color-on-surface-variant: var(--on-surface-variant);
+  --color-accent: var(--accent);
+  --color-on-accent: var(--on-accent);
+  --layout-grid-gap: 12px;
+  --max-width: 1600px;
+  --padding: 20px;
+}
+
+@layer base {
+  [data-theme="rainbow"] {
+    --background-image: url("/images/bg/rainbowplaid.gif");
+    --header-nav-bg: url("/images/bg/rainbow.webp");
+    --header-nav-border-bg-bottom:
+      url("/images/dividers/rainbowstarstatic.gif"),
+      url("/images/dividers/rainbowstars.gif");
+    --header-nav-border-bg: url("/images/dividers/rainbowstarstatic.gif");
+    --header-bg: url("/images/bg/pink-sparkle-sky.gif");
+    --header-title-font: var(--font-handwritten);
+    --background: var(--color-lime-200);
+    --foreground: var(--color-purple-900);
+    --surface: var(--color-lime-100);
+    --on-surface: var(--color-purple-700);
+    --surface-variant: var(--color-sky-100);
+    --on-surface-variant: var(--color-fuchsia-400);
+    --accent: var(--color-yellow-200);
+    --on-accent: var(--color-purple-700);
+    --cursor: url("/cursors/rainbow.cur") 1 1, auto;
+    --border: var(--color-yellow-300);
+    --dropdown-bg: var(--color-lime-100);
+    --dropdown-bg-url: url("/images/bg/starsstripes.gif");
+    --sidebar-bg: url("/images/bg/rainbow.jpg");
+    --footer-bg: url("/images/bg/starsstripes.gif");
+  }
+
+  [data-theme="pixel-princess"] {
+    --color-pink-50: oklch(97.058% 0.01745 339.582);
+    --color-pink-100: oklch(94.743% 0.03099 340.362);
+    --color-pink-200: oklch(89.765% 0.06893 340.845);
+    --color-pink-300: oklch(83.975% 0.11242 342.768);
+    --color-pink-400: oklch(72.923% 0.1989 347.125);
+    --color-pink-500: oklch(66.701% 0.23481 351.642);
+    --color-pink-600: oklch(60.876% 0.23621 358.052);
+    --color-pink-700: oklch(54.172% 0.21336 1.746);
+    --color-pink-800: oklch(47.185% 0.18277 1.606);
+    --color-pink-900: oklch(41.703% 0.15619 359.818);
+    --color-pink-950: oklch(29.1% 0.11373 1.143);
+    --color-green-50: oklch(0.991 0.014 155.45);
+    --color-green-100: oklch(0.969 0.043 155.86);
+    --color-green-200: oklch(0.947 0.073 155.56);
+    --color-green-300: oklch(0.917 0.127 155.22);
+    --color-green-400: oklch(0.89 0.173 154.89);
+    --color-green-500: oklch(0.765 0.167 154.85);
+    --color-green-600: oklch(0.639 0.139 154.8);
+    --color-green-700: oklch(0.512 0.112 154.8);
+    --color-green-800: oklch(0.387 0.085 154.66);
+    --color-green-900: oklch(0.261 0.057 154.22);
+    --color-green-950: oklch(0.194 0.042 154.88);
+    --header-title-font: var(--font-cursive);
+    --header-bg: url("/images/bg/greenstripes.jpg");
+    --header-nav-bg: url("/images/bg/pixelplaid.gif");
+    --header-nav-border-bg-bottom:
+      url("/images/dividers/greenbow.gif"),
+      url("/images/dividers/pink-sparkle-bows.gif");
+    --header-nav-border-bg: url("/images/dividers/greenbow.gif");
+    --background-image: url("/images/bg/roses.gif");
+    --background: var(--color-green-100);
+    --cursor: url("/cursors/blue-butterfly.gif") 1 1, auto;
+    --dropdown-bg-url: url("/images/bg/smallpinkplaid.gif");
+    --foreground: var(--color-pink-500);
+    --surface: var(--color-purple-100);
+    --on-surface: var(--color-violet-500);
+    --surface-variant: var(--color-yellow-100);
+    --on-surface-variant: var(--color-pink-400);
+    --accent: var(--color-pink-200);
+    --on-accent: var(--color-pink-600);
+    --border: var(--color-green-500);
+    --sidebar-bg: url("/images/bg/greenplaid.png");
+    --footer-bg: url("/images/bg/pixelplaid.gif");
+  }
+
+  body {
+    @apply bg-background font-sans text-base text-foreground transition-colors duration-200 ease-in-out;
+    background-image: var(--background-image);
+    cursor: var(--cursor);
+  }
+
+  .layout {
+    @apply grid max-h-[calc(100vh-1em)] h-screen w-full max-w-[98%] mx-auto my-auto mt-2;
+  }
+
+  #home-layout {
+    grid-template:
+      "header header header" auto
+      "headerNav headerNav headerNav" 75px
+      "leftSidebar main rightSidebar" auto
+      "footer footer footer" auto / 240px 1fr 240px;
+
+    @media all and (max-width: 1100px) {
+      grid-template:
+        "header header" auto
+        "headerNav headerNav" auto
+        "leftSidebar main" auto
+        "rightSidebar main" auto
+        "footer footer" auto / 240px 1fr;
+    }
+
+    @media all and (max-width: 768px) {
+      grid-template:
+        "header header" auto
+        "headerNav headerNav" auto
+        "main main" auto
+        "leftSidebar rightSidebar" auto
+        "footer footer" auto / 50% 50%;
+    }
+
+    @media all and (max-width: 575px) {
+      grid-template:
+        "header header" auto
+        "headerNav headerNav" auto
+        "main main" auto
+        "leftSidebar leftSidebar" auto
+        "rightSidebar rightSidebar" auto
+        "footer footer" auto / 50% 50%;
+    }
+  }
+
+  @keyframes rainbow-colors {
+    0% {
+      color: hsl(0turn, 90%, 75%);
+    }
+
+    25% {
+      color: hsl(0.25turn, 90%, 75%);
+    }
+
+    50% {
+      color: hsl(0.5turn, 90%, 75%);
+    }
+
+    75% {
+      color: hsl(0.75turn, 90%, 75%);
+    }
+
+    100% {
+      color: hsl(1turn, 90%, 75%);
+    }
+  }
+
+  @keyframes marquee {
+    0% {
+      transform: translateX(100%);
+    }
+
+    100% {
+      transform: translateX(-100%);
+    }
+  }
+}
+
+@layer components {
+  #theme-swap,
+  #font-swap {
+    @apply absolute top-5! z-999999;
+
+    select,
+    button {
+      @apply flex content-center border-border text-foreground bg-surface rounded-lg py-0.5 px-1.5 text-xs transition-colors duration-200 ease-in-out;
+      background-image: linear-gradient(
+        to top,
+        var(--surface) 0%,
+        var(--surface-variant) 100%
+      );
+
+      &:hover {
+        filter: brightness(1.1);
+      }
+    }
+
+    span {
+      @apply tracking-wide;
+    }
+
+    img {
+      @apply block mr-2;
+    }
+
+    @media (max-width: 576px) {
+      @apply hidden;
+    }
+  }
+
+  #theme-swap {
+    @apply left-8;
+  }
+
+  #font-swap {
+    @apply right-8;
+  }
+
+  #skip-to-sitemap-link,
+  #skip-to-content-link {
+    @apply fixed top-0 left-0 inline-block py-1.5 px-3 leading-4 text-lg bg-background text-foreground z-9999999 -translate-y-12 transition-transform duration-100 ease-in;
+  }
+
+  #skip-to-sitemap-link:focus,
+  #skip-to-content-link:focus,
+  #skip-to-sitemap-link:focus-within,
+  #skip-to-content-link:focus-within {
+    @apply translate-y-0;
+  }
+
+  footer.layout-footer {
+    @apply items-center [grid-area:footer] bg-(image:--footer-bg) bg-repeat rounded-b-2xl border-2 border-on-surface-variant border-t text-foreground text-xs justify-center overflow-hidden p-4;
+
+    @media (min-width: 1000px) {
+      @apply rounded-b-3xl;
+    }
+
+    section {
+      @apply bg-surface w-[95%] text-center border-2 border-on-surface rounded-3xl rounded-t-none flex justify-around my-0 mx-auto;
+
+      @media (max-width: 768px) {
+        @apply flex-col justify-between;
+      }
+    }
+
+    a:hover {
+      @apply text-on-accent;
+    }
+
+    ul.footer-menu {
+      @apply list-none inline-flex items-center justify-end gap-2.5 underline decoration-wavy text-on-surface decoration-on-surface-variant;
+
+      @media (max-width: 768px) {
+        @apply my-4 mx-auto p-0 justify-center;
+      }
+
+      @media (max-width: 320px) {
+        @apply flex-col;
+      }
+    }
+  }
+}
+
+@import "./components/header.css";
+@import "./components/navbar.css";
+@import "./components/sidebar.css";

@@ -1,0 +1,42 @@
+@layer components {
+  .layout-header {
+    @apply text-center z-1;
+    @apply border-2 border-border border-b-transparent rounded-t-md;
+    @apply max-h-[180px] h-full overflow-hidden;
+    @apply flex justify-center items-center [grid-area:header];
+    @apply bg-(image:--header-bg) bg-repeat;
+
+    @media (max-width: 576px) {
+      @apply mb-0;
+    }
+
+    @media (min-width: 1000px) {
+      @apply rounded-t-3xl;
+    }
+
+    .header-title {
+      @apply font-(--header-title-font) text-6xl m-0 p-2.5 overflow-hidden;
+
+      @media (max-width: 768px) {
+        @apply text-4xl;
+      }
+
+      @media (max-width: 576px) {
+        @apply text-3xl;
+      }
+
+      @media (max-width: 400px) {
+        @apply text-2xl;
+      }
+
+      a {
+        @apply inline-block no-underline transition-transform duration-200 ease-in-out transform-none;
+
+        &:hover,
+        &:focus {
+          @apply scale-[1.03];
+        }
+      }
+    }
+  }
+}
