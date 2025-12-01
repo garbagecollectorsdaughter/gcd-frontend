@@ -1,8 +1,9 @@
 import Image from 'next/image'
 import Link from 'next/link'
+
 import SidebarNav from '@/components/SidebarNav'
-import pinksparkle from '~/images/bullets/pinksparkle.gif'
 import { WPMenu } from '@/types'
+import pinksparkle from '~/images/bullets/pinksparkle.gif'
 
 interface SidebarParams {
   menus: { title: string; menu: WPMenu }[]

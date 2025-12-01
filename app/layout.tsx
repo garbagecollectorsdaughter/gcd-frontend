@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
-
+import { IBM_Plex_Mono, IBM_Plex_Sans } from 'next/font/google'
+import localFont from 'next/font/local'
 import Link from 'next/link'
-
 import Loading from '@/components/Loading'
 import { CONFIG } from '@/config'
 import ClientThemeWrapper from '@/context/ClientThemeWrapper'
@@ -10,8 +10,6 @@ import { ThemeProvider } from '@/context/ThemeContext'
 import { LayoutProvider, MotionProvider } from '@/providers'
 import { fetchMenu } from '@/services/graphql'
 import { MenuLocationEnum } from '@/types'
-import { IBM_Plex_Sans, IBM_Plex_Mono } from 'next/font/google'
-import localFont from 'next/font/local'
 
 const basiicFont = localFont({
   src: [

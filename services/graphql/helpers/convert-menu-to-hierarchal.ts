@@ -1,4 +1,4 @@
-import { WPMenuItem, Nullable, MenuItem, NestedMenuItem } from '@/types'
+import { MenuItem, NestedMenuItem, Nullable, WPMenuItem } from '@/types'
 
 type ConvertedMenu = (MenuItem | NestedMenuItem)[]
 
@@ -12,7 +12,7 @@ type ConvertedMenu = (MenuItem | NestedMenuItem)[]
  */
 export function convertMenuToHierarchal(
   data: WPMenuItem[] = [],
-  { idKey = 'key', parentKey = 'parentId', childrenKey = 'children' } = {},
+  { idKey = 'key', parentKey = 'parentId', childrenKey = 'children' } = {}
 ): ConvertedMenu {
   const itemMap: Record<string, NestedMenuItem> = {}
 
