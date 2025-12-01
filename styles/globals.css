@@ -146,6 +146,54 @@
     }
   }
 
+  #page-layout {
+    grid-template:
+      "header header header" auto
+      "headerNav headerNav headerNav" auto
+      "leftSidebar main main" auto
+      "footer footer footer" auto / 240px 1fr 1fr;
+
+    #page-content {
+      h1 {
+        @apply font-cursive text-4xl mb-2;
+      }
+
+      h2 {
+        @apply font-cute text-3xl mt-8 mb-4;
+      }
+
+      div {
+        @apply leading-7;
+      }
+
+      ul {
+        @apply list-disc ml-5;
+
+        + p {
+          @apply mt-4;
+        }
+      }
+    }
+  }
+
+  #slug-layout {
+    grid-template-areas:
+      "header header header"
+      "headerNav headerNav headerNav"
+      "main main main"
+      "footer footer footer";
+    grid-template-rows: 180px 75px auto 125px;
+
+    @media all and (max-width: 1100px) {
+      grid-template-areas:
+        "header header"
+        "headerNav headerNav"
+        "main main"
+        "footer footer";
+      grid-template-rows: 150px 75px auto 125px;
+    }
+  }
+
   @keyframes rainbow-colors {
     0% {
       color: hsl(0turn, 90%, 75%);
@@ -232,14 +280,19 @@
   }
 
   footer.layout-footer {
-    @apply items-center [grid-area:footer] bg-(image:--footer-bg) bg-repeat rounded-b-2xl border-2 border-on-surface-variant border-t text-foreground text-xs justify-center overflow-hidden p-4;
+    @apply flex items-center [grid-area:footer] justify-center overflow-hidden p-4;
+    @apply bg-(image:--footer-bg) bg-repeat;
+    @apply rounded-b-2xl border-2 border-on-surface-variant border-t;
+    @apply text-foreground text-xs;
 
     @media (min-width: 1000px) {
       @apply rounded-b-3xl;
     }
 
     section {
-      @apply bg-surface w-[95%] text-center border-2 border-on-surface rounded-3xl rounded-t-none flex justify-around my-0 mx-auto;
+      @apply flex justify-around my-0 mx-auto py-2.5 bg-surface-variant w-[95%] text-center;
+      @apply border-2 border-on-surface-variant rounded-3xl;
+      @apply items-center;
 
       @media (max-width: 768px) {
         @apply flex-col justify-between;

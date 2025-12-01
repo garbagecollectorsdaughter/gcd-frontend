@@ -1,6 +1,6 @@
 /* Base styles */
 nav[aria-label="Main navigation"] {
-  @apply bg-surface-variant border-l-2 border-r-2 border-l-on-accent border-r-on-accent flex justify-around relative top-0 [grid-area:headerNav] flex-col gap-2.5;
+  @apply bg-surface-variant border-l-2 border-r-2 border-l-on-accent border-r-on-accent flex justify-around relative top-0 [grid-area:headerNav] flex-col gap-2.5 py-4;
   background-image: var(--header-nav-bg);
 
   &::before,

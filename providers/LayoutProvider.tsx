@@ -1,5 +1,8 @@
 'use client'
 
+import { usePathname } from 'next/navigation'
+import { useEffect } from 'react'
+
 import FontSwap from '@/components/FontSwap'
 import RightSidebar from '@/components/RightSidebar'
 import Sidebar from '@/components/Sidebar'
@@ -19,17 +22,82 @@ export const LayoutProvider = ({
   footer,
   menus,
 }: LayoutProviderProps) => {
-  return (
-    <div id="home-layout" className="layout">
-      <ThemeSwap />
-      <FontSwap />
-      {header}
-      <Sidebar menus={menus} />
-      <main className="[grid-area:main] bg-surface border-2 border-border border-t-0 leading-1.5 pt-24 w-full overflow-y-auto p-8">
-        {children}
-      </main>
-      <RightSidebar />
-      {footer}
-    </div>
-  )
+  const pathname = usePathname()
+
+  const indexPaths = ['/']
+  const pagePaths = [
+    '/colophon',
+    '/colophon/',
+    '/about',
+    '/about/',
+    '/start-here',
+    '/start-here/',
+    '/sitemap',
+    '/sitemap/',
+  ]
+  const slugPaths = ['category']
+
+  const useSlugPath = slugPaths.includes(pathname.split('/')[1])
+
+  useEffect(() => {
+    if (indexPaths.includes(pathname)) {
+      document.body.setAttribute('class', '')
+      document.body.classList.add('index')
+    }
+
+    if (pagePaths.includes(pathname)) {
+      document.body.setAttribute('class', '')
+      document.body.classList.add('page')
+    }
+
+    if (useSlugPath) {
+      document.body.setAttribute('class', '')
+      document.body.classList.add('page')
+    }
+  })
+
+  if (indexPaths.includes(pathname)) {
+    return (
+      <div id="home-layout" className="layout">
+        <ThemeSwap />
+        <FontSwap />
+        {header}
+        <Sidebar menus={menus} />
+        <main className="[grid-area:main] bg-surface border-2 border-border border-t-0 leading-1.5 pt-24 w-full overflow-y-auto p-8">
+          {children}
+        </main>
+        <RightSidebar />
+        {footer}
+      </div>
+    )
+  }
+
+  if (useSlugPath) {
+    return (
+      <div id="slug-layout" className="layout">
+        <ThemeSwap />
+        <FontSwap />
+        {header}
+        <main className="[grid-area:main] bg-surface border-2 border-border border-t-0 leading-1.5 pt-24 w-full overflow-y-auto p-8">
+          {children}
+        </main>
+        {footer}
+      </div>
+    )
+  }
+
+  if (pagePaths.includes(pathname)) {
+    return (
+      <div id="page-layout" className="layout">
+        <ThemeSwap />
+        <FontSwap />
+        {header}
+        <Sidebar menus={menus} />
+        <main className="[grid-area:main] bg-surface border-2 border-border border-t-0 leading-1.5 pt-24 w-full overflow-y-auto p-8">
+          {children}
+        </main>
+        {footer}
+      </div>
+    )
+  }
 }
