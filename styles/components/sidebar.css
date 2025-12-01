@@ -67,7 +67,7 @@
     @apply [grid-area:rightSidebar] border-2 border-border border-t-0 pt-12;
 
     .marquee-container {
-      @apply border-2 border-dotted border-green-700 bg-green-300 rounded-md grid overflow-hidden mt-15;
+      @apply border-2 border-dotted border-on-surface-variant bg-surface-variant rounded-md grid overflow-hidden mt-15;
       --gap: 0px;
       --speed-to-loop: 45s;
       --timing-function: linear;
@@ -108,7 +108,7 @@
     }
 
     #cliques {
-      @apply bg-pink-100 border border-solid border-pink-500;
+      @apply bg-surface border border-solid border-on-surface;
       align-items: center;
       border-radius: 15px;
       display: flex;
@@ -120,7 +120,7 @@
       width: 100%;
 
       .inner {
-        @apply bg-pink-400 border border-solid border-pink-500 text-pink-800;
+        @apply bg-on-surface border border-solid border-on-surface text-surface;
         border-radius: 8px;
         font-family: var(--font-cute);
         font-size: 1.2em;
@@ -146,7 +146,7 @@
     }
 
     #link-back {
-      @apply bg-blue-100 border border-solid border-blue-500;
+      @apply bg-accent border-on-accent border border-solid;
       text-align: center;
       align-items: center;
       border-radius: 15px;
@@ -159,7 +159,7 @@
       width: 100%;
 
       .inner {
-        @apply bg-blue-400 border border-solid border-blue-500 text-blue-800;
+        @apply bg-on-accent border border-solid border-on-accent text-accent;
         border-radius: 8px;
         font-family: var(--font-cute);
         font-size: 1.2em;
@@ -181,8 +181,9 @@
         align-content: center;
 
         textarea {
-          @apply border border-solid border-blue-500 outline-solid outline-blue-500 text-blue-700;
+          @apply border rounded-lg border-solid border-on-accent outline-solid outline-on-accent text-on-accent;
           font-family: var(--font-mono);
+          scrollbar-width: thin;
           font-size: 0.8rem;
           margin: 0 auto;
           margin-bottom: 10px;
@@ -190,7 +191,7 @@
         }
 
         span {
-          @apply text-blue-700;
+          @apply text-on-accent;
           font-size: 0.7rem;
           text-align: center;
           font-style: italic;

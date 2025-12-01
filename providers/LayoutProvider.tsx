@@ -25,7 +25,7 @@ export const LayoutProvider = ({
       <FontSwap />
       {header}
       <Sidebar menus={menus} />
-      <main className="[grid-area:main] bg-surface/70 border-2 border-border border-t-0 leading-1.5 pt-24 w-full overflow-y-auto p-8">
+      <main className="[grid-area:main] bg-surface border-2 border-border border-t-0 leading-1.5 pt-24 w-full overflow-y-auto p-8">
         {children}
       </main>
       <RightSidebar />

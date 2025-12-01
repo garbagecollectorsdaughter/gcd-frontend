@@ -41,11 +41,11 @@
     --background: var(--color-lime-200);
     --foreground: var(--color-purple-900);
     --surface: var(--color-lime-100);
-    --on-surface: var(--color-purple-700);
-    --surface-variant: var(--color-sky-100);
-    --on-surface-variant: var(--color-fuchsia-400);
-    --accent: var(--color-yellow-200);
-    --on-accent: var(--color-purple-700);
+    --on-surface: var(--color-fuchsia-500);
+    --surface-variant: var(--color-orange-100);
+    --on-surface-variant: var(--color-sky-400);
+    --accent: var(--color-purple-200);
+    --on-accent: var(--color-purple-600);
     --cursor: url("/cursors/rainbow.cur") 1 1, auto;
     --border: var(--color-yellow-300);
     --dropdown-bg: var(--color-lime-100);
@@ -85,7 +85,7 @@
       url("/images/dividers/pink-sparkle-bows.gif");
     --header-nav-border-bg: url("/images/dividers/greenbow.gif");
     --background-image: url("/images/bg/roses.gif");
-    --background: var(--color-green-100);
+    --background: var(--color-green-50);
     --cursor: url("/cursors/blue-butterfly.gif") 1 1, auto;
     --dropdown-bg-url: url("/images/bg/smallpinkplaid.gif");
     --foreground: var(--color-pink-500);
