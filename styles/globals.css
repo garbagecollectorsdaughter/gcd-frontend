@@ -108,7 +108,10 @@
 
   .layout {
     @apply grid max-h-screen grid-cols-1 h-screen;
+    padding: 1rem;
+  }
 
+  #home-layout.layout {
     grid-template-rows: auto minmax(min-content, 90px) auto;
     grid-template-areas:
       "header"
@@ -117,7 +120,6 @@
       "leftSidebar"
       "rightSidebar"
       "footer";
-    padding: 1rem;
 
     @media (min-width: 769px) {
       grid-template-areas:
@@ -138,6 +140,15 @@
       grid-template-columns: minmax(175px, 260px) 1fr minmax(175px, 260px);
       grid-template-rows: auto minmax(min-content, 90px) 1fr auto;
     }
+  }
+
+  #slug-layout.layout {
+    grid-template-areas:
+      "header"
+      "headerNav"
+      "main"
+      "footer";
+    grid-template-rows: auto minmax(min-content, 90px) 1fr auto;
   }
 
   #page-layout.layout {
