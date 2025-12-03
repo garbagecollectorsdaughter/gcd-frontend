@@ -1,8 +1,8 @@
 @layer components {
   .layout-header {
     @apply text-center z-1;
-    @apply border-2 border-border border-b-transparent rounded-t-md;
-    @apply max-h-[180px] h-full overflow-hidden;
+    @apply border-2 border-border rounded-t-md;
+    @apply h-full;
     @apply flex justify-center items-center [grid-area:header];
     @apply bg-(image:--header-bg) bg-repeat;
 
@@ -15,7 +15,7 @@
     }
 
     .header-title {
-      @apply font-(--header-title-font) text-6xl m-0 p-2.5 overflow-hidden;
+      @apply font-(--header-title-font) text-7xl m-0 p-2.5;
 
       @media (max-width: 768px) {
         @apply text-4xl;

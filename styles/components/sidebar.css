@@ -64,10 +64,10 @@
 
   #right-sidebar {
     @apply py-2.5 px-3.5;
-    @apply [grid-area:rightSidebar] border-2 border-border border-t-0 pt-12;
+    @apply [grid-area:rightSidebar] border-2 border-border border-t-0 pt-0;
 
     .marquee-container {
-      @apply border-2 border-dotted border-on-surface-variant bg-surface-variant rounded-md grid overflow-hidden mt-15;
+      @apply border-2 border-dotted border-on-surface-variant bg-surface-variant rounded-md grid overflow-hidden mt-5;
       --gap: 0px;
       --speed-to-loop: 45s;
       --timing-function: linear;
@@ -75,6 +75,10 @@
       grid-template-areas: "center";
       height: max-content;
       overflow: hidden;
+
+      @media (min-width: 1000px) {
+        @apply mt-15;
+      }
     }
 
     .marquee-container:hover > .marquee {

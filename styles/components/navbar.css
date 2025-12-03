@@ -12,12 +12,20 @@ nav[aria-label="Main navigation"] {
     @apply bg-(image:--header-nav-border-bg) bg-repeat-x bg-contain h-4 -top-2;
   }
 
-  &::after {
-    @apply bg-(image:--header-nav-border-bg-bottom) -bottom-[90px] h-24;
-    background-position:
-      center 0,
-      center 3px;
-    background-repeat: repeat-x, repeat-x;
+  @media (max-width: 767px) {
+    &::after {
+      @apply bg-(image:--header-nav-border-bg) -bottom-2 bg-repeat-x bg-contain h-4;
+    }
+  }
+
+  @media (min-width: 768px) {
+    &::after {
+      @apply bg-(image:--header-nav-border-bg-bottom) -bottom-[90px] h-24;
+      background-position:
+        center 0,
+        center 3px;
+      background-repeat: repeat-x, repeat-x;
+    }
   }
 }
 

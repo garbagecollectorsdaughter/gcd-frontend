@@ -107,90 +107,36 @@
   }
 
   .layout {
-    @apply grid max-h-[calc(100vh-1em)] h-screen w-full max-w-[98%] mx-auto my-auto mt-2;
-  }
+    @apply grid max-h-screen grid-cols-1 h-screen;
 
-  #home-layout {
-    grid-template:
-      "header header header" auto
-      "headerNav headerNav headerNav" 75px
-      "leftSidebar main rightSidebar" auto
-      "footer footer footer" auto / 240px 1fr 240px;
-
-    @media all and (max-width: 1100px) {
-      grid-template:
-        "header header" auto
-        "headerNav headerNav" auto
-        "leftSidebar main" auto
-        "rightSidebar main" auto
-        "footer footer" auto / 240px 1fr;
-    }
-
-    @media all and (max-width: 768px) {
-      grid-template:
-        "header header" auto
-        "headerNav headerNav" auto
-        "main main" auto
-        "leftSidebar rightSidebar" auto
-        "footer footer" auto / 50% 50%;
-    }
-
-    @media all and (max-width: 575px) {
-      grid-template:
-        "header header" auto
-        "headerNav headerNav" auto
-        "main main" auto
-        "leftSidebar leftSidebar" auto
-        "rightSidebar rightSidebar" auto
-        "footer footer" auto / 50% 50%;
-    }
-  }
-
-  #page-layout {
-    grid-template:
-      "header header header" auto
-      "headerNav headerNav headerNav" auto
-      "leftSidebar main main" auto
-      "footer footer footer" auto / 240px 1fr 1fr;
-
-    #page-content {
-      h1 {
-        @apply font-cursive text-4xl mb-2;
-      }
-
-      h2 {
-        @apply font-cute text-3xl mt-8 mb-4;
-      }
-
-      div {
-        @apply leading-7;
-      }
-
-      ul {
-        @apply list-disc ml-5;
-
-        + p {
-          @apply mt-4;
-        }
-      }
-    }
-  }
-
-  #slug-layout {
+    grid-template-rows: minmax(1fr, 30ch);
     grid-template-areas:
-      "header header header"
-      "headerNav headerNav headerNav"
-      "main main main"
-      "footer footer footer";
-    grid-template-rows: 180px 75px auto 125px;
+      "header"
+      "headerNav"
+      "main"
+      "leftSidebar"
+      "rightSidebar"
+      "footer";
+    padding: 1rem;
 
-    @media all and (max-width: 1100px) {
+    @media (min-width: 769px) {
       grid-template-areas:
         "header header"
         "headerNav headerNav"
-        "main main"
+        "leftSidebar main"
+        "rightSidebar main"
         "footer footer";
-      grid-template-rows: 150px 75px auto 125px;
+      grid-template-columns: minmax(175px, 250px) 1fr;
+    }
+
+    @media (min-width: 1280px) {
+      grid-template-areas:
+        "header header header"
+        "headerNav headerNav headerNav"
+        "leftSidebar main rightSidebar"
+        "footer footer footer";
+      grid-template-columns: minmax(175px, 260px) 1fr minmax(175px, 260px);
+      grid-template-rows: auto minmax(min-content, 90px) 1fr auto;
     }
   }
 
@@ -230,7 +176,7 @@
 @layer components {
   #theme-swap,
   #font-swap {
-    @apply absolute top-5! z-999999;
+    @apply absolute top-6! z-999999;
 
     select,
     button {
