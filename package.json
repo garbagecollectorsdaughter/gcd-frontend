@@ -14,7 +14,8 @@
     "motion-provider": "^0.8.4",
     "next": "16.0.6",
     "react": "19.2.0",
-    "react-dom": "19.2.0"
+    "react-dom": "19.2.0",
+    "splitting": "^1.1.0"
   },
   "devDependencies": {
     "@biomejs/biome": "2.3.8",

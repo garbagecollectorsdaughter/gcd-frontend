@@ -1,6 +1,7 @@
 import Link from 'next/link'
 
 import { HeaderNav } from '@/components/HeaderNav'
+import HeaderTitle from '@/components/HeaderTitle'
 import { convertMenuToHierarchal, fetchMenu } from '@/services/graphql'
 import { MenuLocationEnum, WPMenu } from '@/types'
 
@@ -12,7 +13,9 @@ export default async function Header() {
     <>
       <header className="layout-header">
         <div className="header-title">
-          <Link href="/">Garbage Collector&apos;s Daughter</Link>
+          <Link href="/">
+            <HeaderTitle />
+          </Link>
         </div>
       </header>
       <HeaderNav menu={converted} />

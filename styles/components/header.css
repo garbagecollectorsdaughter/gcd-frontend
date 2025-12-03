@@ -1,4 +1,18 @@
 @layer components {
+  .rainbow .char {
+    font-size: 3.5rem;
+    font-family: var(--header-title-font);
+    color: hsl(calc(360deg * var(--char-percent)), 90%, 75%);
+
+    @media (min-width: 768px) {
+      font-size: 5rem;
+    }
+  }
+
+  .rainbow.animated .char {
+    animation: rainbow-colors 2s linear infinite;
+    animation-delay: calc(-2s * var(--char-percent));
+  }
   .layout-header {
     @apply text-center z-1;
     @apply border-2 border-border rounded-t-md;
@@ -37,6 +51,38 @@
           @apply scale-[1.03];
         }
       }
+    }
+  }
+
+  div[data-theme="rainbow"] {
+    section.header-title-container h1.rainbow {
+      font-size: 5rem;
+      -webkit-text-stroke-width: 3px;
+      -webkit-text-stroke-color: white;
+    }
+  }
+
+  div[data-theme="pixel-princess"] {
+    section.header-title-container h1.glitter {
+      display: block;
+      font-family: var(--header-title-font) !important;
+      text-transform: lowercase;
+      background-image: url("/images/bg/pinkglitter.gif");
+      background-repeat: repeat;
+      font-size: 3.5rem;
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      filter: drop-shadow(1px 1px #fc36ba) drop-shadow(0 -1px #fc36ba)
+        drop-shadow(1px 0 1px #fc36ba) drop-shadow(-1px 0 #fc36ba);
+
+      @media (min-width: 768px) {
+        font-size: 5rem;
+      }
+    }
+
+    section.header-title-container h1.rainbow {
+      display: none;
     }
   }
 }
