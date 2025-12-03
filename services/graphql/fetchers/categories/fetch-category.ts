@@ -1,4 +1,4 @@
-import type { Nullable, Category } from '@/types'
+import type { Category, Nullable } from '@/types'
 import { fetchGraphQL, getGraphQLUrl } from '@/utils'
 
 type CategoryResponse = {

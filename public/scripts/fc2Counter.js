@@ -17,7 +17,7 @@ if (!self._FC2COUNTER89509967_0) {
         document.body.insertBefore(img, document.body.firstChild)
       }
       var counterh = 11
-      var X, Y, L, T, W, H
+      var X, Y, L, T, W, _H
       if (document.all && !window.opera) {
         var csscompat = (document.compatMode || '').indexOf('CSS') != -1
         var b = csscompat ? document.documentElement : document.body
@@ -26,14 +26,14 @@ if (!self._FC2COUNTER89509967_0) {
         L = e.clientX - e.offsetX - 2 + X
         T = e.clientY - e.offsetY - 2 + Y
         W = b.clientWidth - 16
-        H = b.clientHeight - 16
+        _H = b.clientHeight - 16
       } else {
         X = window.pageXOffset
         Y = window.pageYOffset
         L = e.pageX
         T = e.pageY
         W = window.innerWidth - 16
-        H = window.innerHeight - 16
+        _H = window.innerHeight - 16
       }
       T += counterh
       if (W > 0 && L + this.graph_img.width > X + W)
@@ -80,11 +80,13 @@ if (!self._FC2COUNTER89509967_0) {
       return is_first ? '2' : is_unique ? '1' : '0'
     },
     disp_js: function () {
-      const script = document.createElement("script")
-      script.src = 'https://counter1.fc2.com/counter_js.php?id=89509967&main=0&lang=0&visitor=' + this.visit_info()
-      const fc2cnt = document.getElementById("fc2Counter");
-      fc2cnt.appendChild(script);
-    }
+      const script = document.createElement('script')
+      script.src =
+        'https://counter1.fc2.com/counter_js.php?id=89509967&main=0&lang=0&visitor=' +
+        this.visit_info()
+      const fc2cnt = document.getElementById('fc2Counter')
+      fc2cnt.appendChild(script)
+    },
   }
 }
 _FC2COUNTER89509967_0.disp_js()

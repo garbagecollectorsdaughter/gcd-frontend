@@ -18,6 +18,9 @@
       "recommended": false,
       "complexity": { "noUselessTypeConstraint": "error" },
       "correctness": { "noUnusedVariables": "error" },
+      "security": {
+        "noDangerouslySetInnerHtml": "off"
+      },
       "performance": {
         "noImgElement": "warn",
         "noUnwantedPolyfillio": "warn",

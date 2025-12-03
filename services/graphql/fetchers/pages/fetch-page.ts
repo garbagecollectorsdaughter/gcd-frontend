@@ -25,7 +25,10 @@ export const fetchPage = async (slug: string): Promise<WPPage> => {
 
   console.log('RESPONSE FROM fetchPage:', response)
 
-  if (!response.page) return Promise.reject(new Error(`No page found for the following slug ${slug}.`))
+  if (!response.page)
+    return Promise.reject(
+      new Error(`No page found for the following slug ${slug}.`)
+    )
 
   return response.page
 }
