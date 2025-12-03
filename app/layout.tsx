@@ -124,6 +124,7 @@ export const metadata: Metadata = {
     default: CONFIG.siteName,
   },
   description: CONFIG.siteDescription,
+  manifest: '/manifest.json',
   robots: {
     index: true,
     follow: true,
