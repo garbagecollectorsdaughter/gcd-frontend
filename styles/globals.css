@@ -109,7 +109,7 @@
   .layout {
     @apply grid max-h-screen grid-cols-1 h-screen;
 
-    grid-template-rows: minmax(1fr, 30ch);
+    grid-template-rows: auto minmax(min-content, 90px) auto;
     grid-template-areas:
       "header"
       "headerNav"
@@ -137,6 +137,32 @@
         "footer footer footer";
       grid-template-columns: minmax(175px, 260px) 1fr minmax(175px, 260px);
       grid-template-rows: auto minmax(min-content, 90px) 1fr auto;
+    }
+  }
+
+  #page-layout.layout {
+    grid-template-areas:
+      "header"
+      "headerNav"
+      "main"
+      "footer";
+    grid-template-rows: auto minmax(min-content, 90px) 1fr auto;
+
+    #sidebar {
+      display: none !important;
+    }
+
+    @media (min-width: 769px) {
+      grid-template-areas:
+        "header header"
+        "headerNav headerNav"
+        "leftSidebar main"
+        "footer footer";
+      grid-template-columns: minmax(175px, 250px) 1fr;
+
+      #sidebar {
+        display: flex !important;
+      }
     }
   }
 
