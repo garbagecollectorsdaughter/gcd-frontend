@@ -20,10 +20,13 @@ async function fetchData(slug: string[]): Promise<WPPage | null> {
 
 function RenderPage({ page }: { page: WPPage }) {
   return (
-    <section id="page-content">
+    <article
+      id="page-content"
+      className="prose xl:prose-2xl lg:prose-xl md:prose-lg mx-auto"
+    >
       <h1 dangerouslySetInnerHTML={{ __html: page.title }} />
       <div dangerouslySetInnerHTML={{ __html: page.content || '' }} />
-    </section>
+    </article>
   )
 }
 
