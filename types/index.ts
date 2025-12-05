@@ -1,3 +1,5 @@
+import { Url } from "url"
+
 export type Nullable<T> = T | null
 
 export type WPCommentStatus = 'APPROVE' | 'HOLD' | 'SPAM' | 'TRASH'
@@ -176,4 +178,5 @@ export type Category = {
   description: string
   slug: string
   key: string
+  uri: Url
 }
