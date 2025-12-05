@@ -5,7 +5,7 @@ export type PageResponse = {
   page: Nullable<WPPage>
 }
 
-const pageQuery = `query Page($slug: ID = "URI") {
+const pageQuery = `query Page($slug: ID!) {
   page(id: $slug, idType: URI) {
     databaseId
     date
@@ -22,8 +22,6 @@ export const fetchPage = async (slug: string): Promise<WPPage> => {
     url: getGraphQLUrl(),
     variables: { slug },
   })
-
-  console.log('RESPONSE FROM fetchPage:', response)
 
   if (!response.page)
     return Promise.reject(

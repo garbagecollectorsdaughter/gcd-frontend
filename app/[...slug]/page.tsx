@@ -5,15 +5,13 @@ import { fetchPage } from '@/services/graphql'
 import { WPPage } from '@/types'
 
 async function fetchData(slug: string[]): Promise<WPPage | null> {
-  let page = undefined
-
-  if (slug.length === 1) {
-    page = await fetchPage(slug[0])
+  if (slug.length !== 1) {
+    return null
   }
 
-  if (page) {
-    return page
-  } else {
+  try {
+    return await fetchPage(slug[0])
+  } catch {
     return null
   }
 }
