@@ -1,20 +1,14 @@
-import Image from 'next/image'
-import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { BlogPost } from '@/components/post'
 import { fetchPost } from '@/services/graphql'
 import { Post } from '@/types'
 
-async function fetchData(slug: string) {
-  let post = undefined
-
-  post = await fetchPost(slug)
-
-  if (post) {
-    return { post: post }
+async function fetchData(slug: string): Promise<Post | null> {
+  try {
+    return await fetchPost(slug)
+  } catch {
+    return null
   }
-
-  return { error: 'No data found' }
 }
 
 function RenderPage({ post }: { post: Post }) {
@@ -25,19 +19,20 @@ function RenderPage({ post }: { post: Post }) {
   )
 }
 
-export default async function BlogPostPage(props: {
+export default async function BlogPostPage({
+  params,
+}: {
   params: Promise<{ slug: string[] }>
 }) {
-  const params = await props.params
-  const { slug } = params
+  const { slug } = await params
 
   if (slug.length !== 1) {
     return notFound()
   }
 
-  const { post, error } = await fetchData(slug[0])
+  const post = await fetchData(slug[0])
 
-  if (error) {
+  if (!post) {
     return notFound()
   }
 
