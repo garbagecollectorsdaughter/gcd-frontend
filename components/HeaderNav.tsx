@@ -65,10 +65,12 @@ function AccordionMenu({
 
 export function HeaderNav({ menu }: { menu: Menu }) {
   const [isMobile, setIsMobile] = useState(false)
+  const [isMenuVisible, setIsMenuVisible] = useState(true)
 
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth < 768)
+      setIsMenuVisible(!(window.innerWidth < 768))
     }
 
     handleResize()
@@ -83,7 +85,21 @@ export function HeaderNav({ menu }: { menu: Menu }) {
 
   return (
     <nav aria-label="Main navigation">
-      <ul>
+      {isMobile && (
+        <button
+          type="button"
+          className="nav-toggle"
+          aria-controls="header-nav-menu"
+          aria-expanded={isMenuVisible}
+          onClick={() => setIsMenuVisible((prev) => !prev)}
+        >
+          {isMenuVisible ? 'Hide menu' : 'Show menu'}
+        </button>
+      )}
+      <ul
+        id="header-nav-menu"
+        className={`menu-list ${isMobile && !isMenuVisible ? 'is-collapsed' : ''}`}
+      >
         {menu.map((item) =>
           item.children.length > 0 ? (
             <AccordionMenu key={item.key} item={item} isMobile={isMobile} />

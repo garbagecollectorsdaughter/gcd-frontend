@@ -37,6 +37,11 @@ nav[aria-label="Main navigation"] {
   }
 }
 
+/* Ensure the list spans the nav width so the toggle can control it */
+nav[aria-label="Main navigation"] .menu-list {
+  width: 100%;
+}
+
 /* Menu list */
 nav[aria-label="Main navigation"] ul {
   display: flex;
@@ -158,6 +163,19 @@ nav[aria-label="Main navigation"] ul {
 
 /* Mobile Accordion Styles */
 @media (max-width: 767px) {
+  .nav-toggle {
+    @apply bg-surface-variant border-2 border-on-surface-variant rounded-lg cursor-pointer text-lg font-semibold px-4 py-3 transition-colors duration-300 ease-in-out self-start mb-2;
+  }
+
+  .nav-toggle:hover,
+  .nav-toggle:focus {
+    @apply bg-on-surface-variant text-white;
+  }
+
+  .menu-list.is-collapsed {
+    display: none;
+  }
+
   nav[aria-label="Main navigation"] {
     justify-content: flex-start;
     flex-direction: column;
