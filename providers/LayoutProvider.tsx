@@ -24,39 +24,38 @@ export const LayoutProvider = ({
 }: LayoutProviderProps) => {
   const pathname = usePathname()
 
-  const indexPaths = ['/']
-  const pagePaths = [
-    '/colophon',
-    '/colophon/',
-    '/about',
-    '/about/',
-    '/start-here',
-    '/start-here/',
-    '/sitemap',
-    '/sitemap/',
-  ]
-  const slugPaths = ['category', 'post']
+  const normalizePathname = (path?: string) => {
+    if (!path) return '/'
+    if (path === '/') return '/'
+    return path.replace(/\/$/, '')
+  }
 
-  const useSlugPath = slugPaths.includes(pathname.split('/')[1])
+  const normalizedPathname = normalizePathname(pathname)
+  const pagePaths = new Set(['/colophon', '/about', '/start-here', '/sitemap'])
+  const slugPaths = ['category', 'post']
+  const baseSegment = pathname?.split('/')[1] ?? ''
+
+  const layoutType =
+    normalizedPathname === '/'
+      ? 'home'
+      : pagePaths.has(normalizedPathname)
+      ? 'page'
+      : slugPaths.includes(baseSegment)
+      ? 'slug'
+      : 'default'
+
+  const layoutClass = layoutType === 'home' ? 'index' : 'page'
 
   useEffect(() => {
-    if (indexPaths.includes(pathname)) {
-      document.body.setAttribute('class', '')
-      document.body.classList.add('index')
-    }
+    document.body.classList.remove('index', 'page')
+    document.body.classList.add(layoutClass)
 
-    if (pagePaths.includes(pathname)) {
-      document.body.setAttribute('class', '')
-      document.body.classList.add('page')
-    }
-
-    if (useSlugPath) {
-      document.body.setAttribute('class', '')
-      document.body.classList.add('page')
+    return () => {
+      document.body.classList.remove('index', 'page')
     }
   })
 
-  if (indexPaths.includes(pathname)) {
+  if (layoutType === 'home') {
     return (
       <div id="home-layout" className="layout">
         <ThemeSwap />
@@ -72,7 +71,7 @@ export const LayoutProvider = ({
     )
   }
 
-  if (useSlugPath) {
+  if (layoutType === 'slug') {
     return (
       <div id="slug-layout" className="layout">
         <ThemeSwap />
@@ -86,18 +85,16 @@ export const LayoutProvider = ({
     )
   }
 
-  if (pagePaths.includes(pathname)) {
-    return (
-      <div id="page-layout" className="layout">
-        <ThemeSwap />
-        <FontSwap />
-        {header}
-        <Sidebar menus={menus} />
-        <main className="[grid-area:main] bg-surface border-2 border-border border-t-0 p-8 w-full md:overflow-y-auto md:pt-30">
-          {children}
-        </main>
-        {footer}
-      </div>
-    )
-  }
+  return (
+    <div id="page-layout" className="layout">
+      <ThemeSwap />
+      <FontSwap />
+      {header}
+      <Sidebar menus={menus} />
+      <main className="[grid-area:main] bg-surface border-2 border-border border-t-0 p-8 w-full md:overflow-y-auto md:pt-30">
+        {children}
+      </main>
+      {footer}
+    </div>
+  )
 }
