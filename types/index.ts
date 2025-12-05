@@ -37,6 +37,46 @@ type GraphQLNode<T> = {
   node: T
 }
 
+export type GraphQLEdge<T> = GraphQLNode<T> & {
+  cursor: string
+}
+
+export type GraphQLPageInfo = {
+  endCursor: Nullable<string>
+  hasNextPage: boolean
+  hasPreviousPage: boolean
+  startCursor: Nullable<string>
+  total: number
+}
+
+export type GraphQLConnection<T> = {
+  edges: GraphQLEdge<T>[]
+  pageInfo: GraphQLPageInfo
+}
+
+export type GraphQLEdgesInput = {
+  after?: Nullable<string>
+  before?: Nullable<string>
+  first?: number
+  last?: number
+}
+
+export type GraphQLPostWhere = {
+  authorName?: string
+  search?: string
+  title?: string
+}
+
+export type Log = {
+  date: string
+  databaseId: number | string
+  content: string
+  slug: string
+  title: string
+}
+
+export type WPLog = WPContent
+
 type WPInfo = { wordsCount: number }
 
 type WPImage = {
