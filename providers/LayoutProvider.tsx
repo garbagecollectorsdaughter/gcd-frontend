@@ -35,7 +35,7 @@ export const LayoutProvider = ({
     '/sitemap',
     '/sitemap/',
   ]
-  const slugPaths = ['category']
+  const slugPaths = ['category', 'post']
 
   const useSlugPath = slugPaths.includes(pathname.split('/')[1])
 

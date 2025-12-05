@@ -1,5 +1,7 @@
 export type Nullable<T> = T | null
 
+export type WPCommentStatus = 'APPROVE' | 'HOLD' | 'SPAM' | 'TRASH'
+
 export enum MenuLocationEnum {
   Footer = 'FOOTER',
   Header = 'HEADER',
@@ -35,6 +37,10 @@ export type NestedMenuItem = MenuItem & {
 
 type GraphQLNode<T> = {
   node: T
+}
+
+type GraphQLNodes<T> = {
+  nodes: T[]
 }
 
 export type GraphQLEdge<T> = GraphQLNode<T> & {
@@ -73,6 +79,67 @@ export type Log = {
   content: string
   slug: string
   title: string
+}
+
+export type Author = {
+  name: string
+  slug: string
+  avatar: {
+    url: string
+  }
+}
+
+export type Term = {
+  name: string
+  slug: string
+}
+
+export type Comment = {
+  databaseId: number
+  commentedOn: number
+  parentDatabaseId: number
+  content: string
+  date: string
+  status: WPCommentStatus
+  author: {
+    name: string
+    url: Nullable<string>
+    node: {
+      avatar: {
+        url: string
+        width: number
+        height: number
+      }
+    }
+  }
+  replies?: Comment[]
+}
+
+export type Post = {
+  key: string
+  databaseId: number
+  author: { node: Author }
+  date: string
+  content: string
+  slug: string
+  title: string
+  uri: string
+  excerpt: string
+  commentCount: Nullable<number>
+  categories: GraphQLNodes<Category>
+  tags: { edges: { node: Term }[] }
+  comments: { nodes: Comment[] }
+  featuredImage?: {
+    node: {
+      altText: Nullable<string>
+      caption: Nullable<string>
+      mediaDetails: {
+        height: number
+        width: number
+      }
+      sourceUrl: string
+    }
+  }
 }
 
 export type WPLog = WPContent
