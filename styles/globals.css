@@ -23,6 +23,7 @@
   --color-on-surface-variant: var(--on-surface-variant);
   --color-accent: var(--accent);
   --color-on-accent: var(--on-accent);
+  --color-soft-border: var(--soft-border);
   --layout-grid-gap: 12px;
   --max-width: 1600px;
   --padding: 20px;
@@ -32,9 +33,7 @@
   [data-theme="rainbow"] {
     --background-image: url("/images/bg/rainbowplaid.gif");
     --header-nav-bg: url("/images/bg/rainbow.webp");
-    --header-nav-border-bg-bottom:
-      url("/images/dividers/rainbowstarstatic.gif"),
-      url("/images/dividers/rainbowstars.gif");
+    --header-nav-border-bg-bottom: url("/images/dividers/rainbowstars.gif");
     --header-nav-border-bg: url("/images/dividers/rainbowstarstatic.gif");
     --header-bg: url("/images/bg/pink-sparkle-sky.gif");
     --header-title-font: var(--font-handwritten);
@@ -48,6 +47,7 @@
     --on-accent: var(--color-purple-600);
     --cursor: url("/cursors/rainbow.cur") 1 1, auto;
     --border: var(--color-yellow-300);
+    --soft-border: var(--color-lime-200);
     --dropdown-bg: var(--color-lime-100);
     --dropdown-bg-url: url("/images/bg/starsstripes.gif");
     --sidebar-bg: url("/images/bg/rainbow.jpg");
@@ -86,6 +86,7 @@
     --header-nav-border-bg: url("/images/dividers/greenbow.gif");
     --background-image: url("/images/bg/roses.gif");
     --background: var(--color-green-50);
+    --soft-border: var(--color-green-200);
     --cursor: url("/cursors/blue-butterfly.gif") 1 1, auto;
     --dropdown-bg-url: url("/images/bg/smallpinkplaid.gif");
     --foreground: var(--color-pink-500);
