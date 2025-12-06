@@ -12,6 +12,14 @@ jobs:
   build:
     name: Lint and build
     runs-on: ubuntu-latest
+    env:
+      # Ensure these environment variables are available during Next.js build
+      # Set these as Repository Variables or Secrets in your GitHub repo.
+      NEXT_PUBLIC_APP_ENV: production
+      NEXT_PUBLIC_PRODUCTION_GRAPHQL_API: ${{ vars.NEXT_PUBLIC_PRODUCTION_GRAPHQL_API }}
+      NEXT_PUBLIC_STAGING_GRAPHQL_API: ${{ vars.NEXT_PUBLIC_STAGING_GRAPHQL_API }}
+      NEXT_PUBLIC_WORDPRESS_GRAPHQL_URL: ${{ vars.NEXT_PUBLIC_WORDPRESS_GRAPHQL_URL }}
+      NEXT_PUBLIC_SITE_URL: ${{ vars.NEXT_PUBLIC_SITE_URL }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
