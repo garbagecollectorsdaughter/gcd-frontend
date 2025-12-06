@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import { useToast } from '@/context/ToastContext'
 import type { Post } from '@/types'
 
 type PageInfo = {
@@ -18,14 +19,13 @@ export default function PostsList({
   const [posts, setPosts] = useState<Post[]>(initialPosts)
   const [pageInfo, setPageInfo] = useState<PageInfo>(initialPageInfo ?? {})
   const [loading, setLoading] = useState(false)
-  const [error, setError] = useState<string | null>(null)
+  const { addToast } = useToast()
 
   const loadMore = async () => {
     if (!pageInfo.hasNextPage) return
     if (loading) return
 
     setLoading(true)
-    setError(null)
 
     try {
       const after = pageInfo.endCursor ?? ''
@@ -44,7 +44,11 @@ export default function PostsList({
       setPageInfo(newPageInfo)
     } catch (err: unknown) {
       const message = err instanceof Error ? err.message : String(err)
-      setError(message)
+      // show a friendly toast and keep the technical details in the console
+      addToast({ type: 'error', message: 'Unable to load more posts.' })
+      // also log technical details for developer debugging
+      // eslint-disable-next-line no-console
+      console.error('PostsList loadMore error:', message)
     } finally {
       setLoading(false)
     }
@@ -113,23 +117,6 @@ export default function PostsList({
               'Load more'
             )}
           </button>
-
-          {error ? (
-            <div
-              role="alert"
-              className="mt-3 text-sm text-red-600 flex items-center gap-3"
-            >
-              <span title={error}>Unable to load more posts.</span>
-              <button
-                onClick={loadMore}
-                className="ml-3 btn btn-sm"
-                disabled={loading}
-              >
-                Retry
-              </button>
-              <span className="sr-only">Error details: {error}</span>
-            </div>
-          ) : null}
         </div>
       ) : null}
     </div>

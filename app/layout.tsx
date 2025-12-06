@@ -114,6 +114,7 @@ const ibmPlexMono = IBM_Plex_Mono({
 })
 
 import '@/styles/globals.css'
+import ClientToastProvider from '@/components/ClientToastProvider'
 
 export const metadata: Metadata = {
   metadataBase: CONFIG.url
@@ -189,7 +190,11 @@ export default async function RootLayout({
                   Go to Sitemap
                 </Link>
                 <LayoutProvider menus={menus} header={header} footer={footer}>
-                  {children}
+                  {/* ToastProvider provides site-wide toasts for client components */}
+                  {/* Imported here so the provider is available throughout the app UI */}
+                  {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
+                  {/* @ts-ignore Server -> Client component insertion (allowed) */}
+                  <ClientToastProvider>{children}</ClientToastProvider>
                 </LayoutProvider>
               </ClientThemeWrapper>
             </FontProvider>
