@@ -18,21 +18,36 @@ export default function PostsList({
   const [posts, setPosts] = useState<Post[]>(initialPosts)
   const [pageInfo, setPageInfo] = useState<PageInfo>(initialPageInfo ?? {})
   const [loading, setLoading] = useState(false)
+  const [error, setError] = useState<string | null>(null)
 
   const loadMore = async () => {
     if (!pageInfo.hasNextPage) return
+    if (loading) return
+
     setLoading(true)
+    setError(null)
 
-    const after = pageInfo.endCursor ?? ''
-    const res = await fetch(`/api/posts?after=${encodeURIComponent(after)}`)
-    const json = await res.json()
+    try {
+      const after = pageInfo.endCursor ?? ''
+      const res = await fetch(`/api/posts?after=${encodeURIComponent(after)}`)
 
-    const newPosts: Post[] = json.posts?.nodes ?? []
-    const newPageInfo = json.posts?.pageInfo ?? {}
+      if (!res.ok) {
+        throw new Error(`Server responded with ${res.status}`)
+      }
 
-    setPosts((p) => [...p, ...newPosts])
-    setPageInfo(newPageInfo)
-    setLoading(false)
+      const json = await res.json()
+
+      const newPosts: Post[] = json.posts?.nodes ?? []
+      const newPageInfo = json.posts?.pageInfo ?? {}
+
+      setPosts((p) => [...p, ...newPosts])
+      setPageInfo(newPageInfo)
+    } catch (err: unknown) {
+      const message = err instanceof Error ? err.message : String(err)
+      setError(message)
+    } finally {
+      setLoading(false)
+    }
   }
 
   return (
@@ -58,9 +73,63 @@ export default function PostsList({
 
       {pageInfo.hasNextPage ? (
         <div className="mt-6">
-          <button className="btn" onClick={loadMore} disabled={loading}>
-            {loading ? 'Loading…' : 'Load more'}
+          <div aria-live="polite" className="sr-only">
+            {loading ? 'Loading more posts…' : ''}
+          </div>
+
+          <button
+            className="btn inline-flex items-center"
+            onClick={loadMore}
+            disabled={loading}
+            aria-busy={loading}
+            aria-disabled={loading}
+          >
+            {loading ? (
+              <>
+                <svg
+                  className="animate-spin -ml-1 mr-2 h-4 w-4 text-current"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                >
+                  <circle
+                    className="opacity-25"
+                    cx="12"
+                    cy="12"
+                    r="10"
+                    stroke="currentColor"
+                    strokeWidth="4"
+                  />
+                  <path
+                    className="opacity-75"
+                    fill="currentColor"
+                    d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"
+                  />
+                </svg>
+                Loading…
+              </>
+            ) : (
+              'Load more'
+            )}
           </button>
+
+          {error ? (
+            <div
+              role="alert"
+              className="mt-3 text-sm text-red-600 flex items-center gap-3"
+            >
+              <span title={error}>Unable to load more posts.</span>
+              <button
+                onClick={loadMore}
+                className="ml-3 btn btn-sm"
+                disabled={loading}
+              >
+                Retry
+              </button>
+              <span className="sr-only">Error details: {error}</span>
+            </div>
+          ) : null}
         </div>
       ) : null}
     </div>
