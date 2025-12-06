@@ -8,8 +8,10 @@ type PostsResponse = {
   }>
 }
 
-const postsQuery = `query FetchPosts {
+const postsQuery = `query FetchPosts($first: Int, $after: String) {
   posts(
+    first: $first,
+    after: $after,
     where: {
       orderby: { field: DATE, order: DESC }
     }
@@ -44,10 +46,17 @@ const postsQuery = `query FetchPosts {
   }
 }`
 
-export const fetchPosts = async (): Promise<PostsResponse> => {
+export const fetchPosts = async (
+  first: number = 10,
+  after?: string
+): Promise<PostsResponse> => {
+  const variables: Record<string, unknown> = { first }
+  if (after) variables.after = after
+
   const response = await fetchGraphQL<PostsResponse>({
     query: postsQuery,
     url: getGraphQLUrl(),
+    variables,
   })
 
   return response
