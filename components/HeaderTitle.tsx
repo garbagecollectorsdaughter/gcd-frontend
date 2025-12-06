@@ -1,5 +1,5 @@
-import RainbowHeaderTitle from '@/components/RainbowHeaderTitle'
 import GlitterHeaderTitle from '@/components/GlitterHeaderTitle'
+import RainbowHeaderTitle from '@/components/RainbowHeaderTitle'
 
 function HeaderTitle() {
   return (

@@ -12,6 +12,6 @@ export const convertWPLogToLog = ({
     databaseId,
     content,
     slug,
-    title
+    title,
   }
 }

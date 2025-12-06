@@ -87,7 +87,7 @@ export const fetchPost = async (slug: string) => {
 
   if (!response.post)
     return Promise.reject(
-      new Error(`No post found for the following slug ${slug}.`),
+      new Error(`No post found for the following slug ${slug}.`)
     )
 
   return response.post

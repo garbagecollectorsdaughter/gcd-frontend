@@ -38,7 +38,9 @@ const postsQuery = `query FetchPostsByCategory($categorySlug: String) {
   }
 }`
 
-export const fetchPostsByCategory = async (categorySlug: string): Promise<PostsResponse> => {
+export const fetchPostsByCategory = async (
+  categorySlug: string
+): Promise<PostsResponse> => {
   const response = await fetchGraphQL<PostsResponse>({
     query: postsQuery,
     url: getGraphQLUrl(),

@@ -39,10 +39,10 @@ export const LayoutProvider = ({
     normalizedPathname === '/'
       ? 'home'
       : pagePaths.has(normalizedPathname)
-      ? 'page'
-      : slugPaths.includes(baseSegment)
-      ? 'slug'
-      : 'default'
+        ? 'page'
+        : slugPaths.includes(baseSegment)
+          ? 'slug'
+          : 'default'
 
   const layoutClass = layoutType === 'home' ? 'index' : 'page'
 

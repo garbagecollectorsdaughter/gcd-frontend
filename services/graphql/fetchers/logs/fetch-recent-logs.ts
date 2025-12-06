@@ -3,7 +3,7 @@ import {
   GraphQLEdgesInput,
   GraphQLPostWhere,
   Nullable,
-  WPLog
+  WPLog,
 } from '@/types'
 
 import { fetchGraphQL, getGraphQLUrl } from '@/utils'
