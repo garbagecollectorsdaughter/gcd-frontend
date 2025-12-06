@@ -13,10 +13,9 @@ const apiUrl = function () {
   }
 }
 
-
 export const CONFIG = {
   api: {
-    url: apiUrl()
+    url: apiUrl(),
   },
   siteName: "Garbage Collector's Daughter",
   url: process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000',
