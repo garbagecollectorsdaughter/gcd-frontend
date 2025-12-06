@@ -302,6 +302,7 @@
   }
 }
 
+@import "./utilities/badge.css";
 @import "./components/header.css";
 @import "./components/navbar.css";
 @import "./components/sidebar.css";

@@ -12,11 +12,7 @@ async function fetchData(slug: string): Promise<Post | null> {
 }
 
 function RenderPage({ post }: { post: Post }) {
-  return (
-    <div className="prose lg:prose-lg xl:prose-xl 2xl:prose-2xl mx-auto my-10">
-      <BlogPost post={post} />
-    </div>
-  )
+  return <BlogPost post={post} />
 }
 
 export default async function BlogPostPage({
