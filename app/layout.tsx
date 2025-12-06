@@ -160,16 +160,21 @@ export default async function RootLayout({
   header,
   footer,
 }: RootLayoutProps) {
-  const fetchedSidebarMenu = await fetchMenu(MenuLocationEnum.Sidebar)
-  if (!fetchedSidebarMenu) {
-    return <Loading />
+  let fetchedSidebarMenu = null
+  try {
+    fetchedSidebarMenu = await fetchMenu(MenuLocationEnum.Sidebar)
+  } catch (err) {
+    // Don't fail the entire build if the external CMS is unavailable during prerender.
+    // Log the error and continue with an empty menu.
+    // eslint-disable-next-line no-console
+    console.error('fetchMenu failed in RootLayout:', err)
+    fetchedSidebarMenu = null
   }
 
-  if (!fetchedSidebarMenu.nodes) {
-    return <Loading />
-  }
-
-  const menus = [{ title: 'Info', menu: fetchedSidebarMenu }]
+  const menus =
+    fetchedSidebarMenu && fetchedSidebarMenu.nodes
+      ? [{ title: 'Info', menu: fetchedSidebarMenu }]
+      : []
   return (
     <html
       lang="en"
